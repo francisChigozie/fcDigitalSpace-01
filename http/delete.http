@@ -1,0 +1,3 @@
+DELETE     http://localhost:4001/infocontact/6225a9a3b0e757ec34c556af
+Content-Type: application/json
+

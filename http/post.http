@@ -1,0 +1,10 @@
+POST http://localhost:4001/contact
+Content-Type: application/json
+
+{
+    "name":"Katty",
+    "subject":"Welcome address",
+    "email":"katt@yahoo.com",
+    "phone":"+4912345566",
+    "text":"How are you today"
+}

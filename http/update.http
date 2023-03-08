@@ -1,0 +1,10 @@
+PUT http://localhost:4001/infocontact/62250c9924b36c7a1e39031b
+Content-Type: application/json
+
+{
+    "name":"Katty",
+    "subject":"See you soon",
+    "email":"katt2@yahoo.com",
+    "phone":"+4912345566",
+    "text":"Welcome back"
+}
