@@ -18,6 +18,8 @@ const errorHadler = require('./middleware/error');
 // Load env vars
 dotenv.config({path:'./config/config.env'})
 
+const PORT = process.env.PORT || 3003
+
 const app = express()
 
 app.use(express.json())
@@ -26,11 +28,10 @@ app.use(express.json())
 //if(process.env === 'production'){
     // app.use(morgan('dev'));
 //}
-
-const PORT = process.env.PORT || 3003
-
+//app.set('views', path.join(__dirname,'views'))
 app.set('view engine', 'ejs');
-//app.set('views','myViews')
+app.use( express.static( "views" ) );
+//app.set('views','routes')
 
 /* app.use(cors({
     origin: "https://fcwebapp01.herokuapp.com/" //or your netlify domain 

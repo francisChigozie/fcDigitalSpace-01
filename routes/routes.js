@@ -12,7 +12,7 @@ const advancedResults = require('../middleware/advancedResult')
 
 //Home
 router.get("/", (req, res) => {
-    res.render("index", {title:'Portfolio'});
+    res.render("index", {title:'Home'});
 }) 
 
 // About Page
@@ -24,6 +24,12 @@ router.get('/about', function (req, res) {
 router.get('/resume', function (req, res) {
     res.render("resume", {title:'Resume'});
 }); 
+
+router.get("/blog", (req, res) => {
+    res.render("https://github.com/francisChigozie", {title:'Blog'});
+}) 
+
+////////////////////////////////////////////////////////////////////////////////////
 
 //PROJECTS PAGE
 router.get('/project', function (req, res) {
@@ -484,7 +490,7 @@ router.get('/node', function (req, res) {
 
 //404 PAGE
 router.get(/*default*/ (req, res) => {
-    res.status(404).sendFile('/404')
+    res.render('404')
 })
     
 module.exports = router;
