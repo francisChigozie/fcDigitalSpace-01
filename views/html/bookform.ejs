@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Form | <%= title %></title>
+      <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+    <style>
+
+        .affilia{
+            margin-left: -20px;
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+    <div id="contact-form">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-3 rounded"><br>
+                
+                <h1 class="book-form">Create A Book list</h1><br>
+                <form action="https://fcportfolio01-backend.onrender.com/createbook" method="POST" class="form-group">
+                
+                   <label for="title" >Title : </label><input name="title"
+                   required><br>
+
+                    <p>
+                       <label for="year" >Year : </label><input name="year"
+                       required>
+                    </p><br>
+                
+                     <label for="author">Author #1: </label> <br>
+                     <label for="name">Name : </label> <input name="authors[0][name]"
+                     required><br>
+                     <label for="affiliation" class="affilia">Affiliation : </label> <input name="authors[0][affiliation]"
+                     required>
+                    <p><br>
+                        <label for="author2">Author #2: </label> <br>
+                        <label for="name2">Name : </label> <input name="authors[1][name]"><br><br>
+                        <label for="affiliation2" class="affilia">Affiliation : </label> <input name="authors[1][affiliation]">
+                    </p><br>
+                
+                    <input type="submit" value="Submit">
+                
+                </form>
+                <br>
+                <a href="/backdev" class="btn">Back</a>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

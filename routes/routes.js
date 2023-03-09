@@ -30,11 +30,288 @@ router.get("/blog", (req, res) => {
 }) 
 
 ////////////////////////////////////////////////////////////////////////////////////
+// Hotel Lounge
+router.get('/hotel', function (req, res) {
+    res.render("./hotel/hotel", {title:'Welcome'});
+}); 
 
+router.get('/hotelabout', function (req, res) {
+    res.render("./hotel/about", {title:'About'});
+}); 
+
+router.get('/hotelcontact', async function(req, res) {
+    res.render("./hotel/contact", {title:'Contact'});
+
+    const hotelcontact = await  Hotelcontact.find();
+
+    res.status(201).json({
+        suceess: true,
+        data: hotelcontact
+    })
+}); 
+
+router.post('/hotelcontact', (asyncHandler(async (req, res, next) => {
+  //const {email} = req.body;
+         //sendmail(email)
+  try{
+     const hotelcontact = await Hotelcontact.create(req.body)
+     
+   //hotelcontact.save(() => {});
+  /*  res.render('hotelform', {data: hotelcontact,
+      success: true}); */
+
+  }catch(err){
+      error.message(err)
+  }
+
+})))
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Frankfurt
+router.get('/frankfurt', function (req, res) {
+    res.render("./frankfurt/frankfurt", {title:'Home'});
+}); 
+
+router.get('/frankfurtblog', function (req, res) {
+    res.render("./frankfurt/blog", {title:'Blog'});
+}); 
+
+router.get('/frankfurtpost1', function (req, res) {
+    res.render("./frankfurt/post1", {title:'Post One'});
+}); 
+
+router.get('/frankfurtpost2', function (req, res) {
+    res.render("./frankfurt/post2", {title:'Post Two'});
+}); 
+
+router.get('/frankfurtpost3', function (req, res) {
+    res.render("./frankfurt/post3", {title:'Post Three'});
+}); 
+
+//Frankfurt Ledger
+router.post('/frankfurtcontact', (asyncHandler(async (req, res, next) => {
+    //const {email} = req.body;
+          // sendmail(email)
+    try{
+       const frankfurtcontact = await Frankfurtcontact.create(req.body)
+
+     /* frankfurtcontact.save(() => {
+
+            res.render('frankfurt', {data: frankfurtcontact,
+              success: true});
+         
+    });*/
+
+    }catch(err){
+        error.message(err)
+    }
+
+})))
+
+
+////////////////////////////////////////////////////////////////////////////
+// Number Guesser
+router.get('/guess', function (req, res) {
+    res.render("./html/guess", {title:'Home'});
+}); 
+
+//////////////////////////////////////////////////////////////////////////////
+//Hambuger Menu
+router.get('/hambuger', function (req, res) {
+    res.render("./html/hambuger", {title:'Home'});
+}); 
+
+///////////////////////////////////////////////////////////////////////////////////
+//Knowledger Resume
+router.get('/knowledge', function (req, res) {
+    res.render("./html/knowledge", {title:'Home'});
+}); 
+
+////////////////////////////////////////////////////////////////////////////////////
+// Loan Calculators
+router.get('/calculate', function (req, res) {
+    res.render("./html/loancalc", {title:'Home'});
+}); 
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Other Satatic Designs
+router.get('/satdesign', function (req, res) {
+    res.render("./html/sdesign", {title:'Home'});
+}); 
+
+//Presentation
+router.get('/presentation', function (req, res) {
+    res.render("./html/presentation", {title:'Home'});
+}); 
+
+//Drop Down Menu
+router.get('/dropdown', function (req, res) {
+    res.render("./html/dropdown", {title:'Home'});
+}); 
+
+///////////////////////////////////////////////////////////////////////////////////
+// Object-Oriented-Programming 
+// OOPROG
+router.get('/ooprog', function (req, res) {
+    res.render("./obj-ori-pro/oop", {title:'Home'});
+}); 
+
+//JAVA
+router.get('/java', function (req, res) {
+    res.render("./obj-ori-pro/java", {title:'Home'});
+});
+
+//PYTHON
+router.get('/python', function (req, res) {
+    res.render("./obj-ori-pro/python", {title:'Home'});
+});
+
+//NODE
+router.get('/node', function (req, res) {
+    res.render("./obj-ori-pro/node", {title:'Home'});   
+});
+
+//////////////////////////////////////////////////////////////////////////////////
+ // BackDev
+ router.get('/backdev', function (req, res) {
+    res.render("./html/backdev", {title:'Home'});
+});  
+
+router.get('/bookform', function (req, res) {
+    res.render("./html/bookform", {title:'Home'});
+}); 
+
+//@desc  Craete New Book
+//@route  POST /api/v1/book
+//@access  Public
+
+router.post('/createbook', asyncHandler(async(req, res, next) => {
+
+       const newBook = await Book.create(req.body)
+
+  newBook.save( (err) => {
+      if (err) {
+          res.type('html').status(500);
+          res.send('Sorry ! This is already published:', err);
+      }else{
+           res.render('createdbook', {book: newBook});
+      }
+  });
+
+}))
+
+//GET ALL BOOKS
+router.get('/all', (req, res) => {
+  Book.find((err, book) => {
+      if (err) {
+          res.type('html').status(500)
+          res.send('Error:', err)
+      }else if (book.length == 0) {
+           res.type('html').status(200)
+           res.send('There is no book created right now.')
+      }else{
+           res.render('showAll', {book: book});
+      }
+  });
+});
+
+//BOOK SEARCH
+router.get('/booksearch', function (req, res) {
+    res.render("./html/booksearch", {title:'Home'});
+}); 
+
+//SEARCH FOR BOOKS
+router.post('/api', (req, res) => {
+
+  var query = {};
+  if (req.query.title)
+ query.title = {$regex: req.query.title};
+  query.title = req.query.title;
+  if (req.query.name)
+  query['authors.name'] = {$regex: req.query.name};
+  query['authors.name'] =  req.query.name;
+  if (req.query.year)
+  query.year = req.query.year;
+
+  if (Object.keys(query).length != 0) {
+      Book.find(query, (err, books) => {
+          if (!err)
+          res.json(books);
+          else {
+              console.log(err)
+              res.json({});
+          }
+      });
+  }else {
+        //res.json({});
+        res.render('books', {books: books});
+  }
+
+})
+
+router.post('/search', (req, res) => {
+  if (req.body.which == 'all') {
+      searchAll(req, res);
+  }else if(req.body.which == 'any') {
+      searchAny(req, res);
+  }else{
+      searchAll(req, res);
+  }
+})
+
+function searchAll(req, res) {
+
+  var query = {};
+
+  if (req.body.title) query.title = req.body.title;
+  if (req.body.year) query.year = req.body.year;
+  if (req.body.name) {
+      query['authors.name'] = req.body.name;
+  }
+  console.log(query)
+
+  Book.find(query, (err, books) => {
+      if (err) {
+          res.type('html').status(500);
+          res.send('Error:', err)
+      }else{
+          res.render('books', {books: books});
+      }
+  })
+}
+
+function searchAny(req, res) {
+
+  var terms = [];
+
+  if (req.body.title) 
+  terms.push({title: { $regex: req.body.title } });
+  if (req.body.year) 
+  terms.push({year: req.body.year});
+  if (req.body.name) 
+      terms.push({'authors.name': req.body.name});
+
+
+  var query = {$or : terms};
+  console.log(query)
+
+  Book.find(query, (err, books) => {
+      if (err) {
+          res.type('html').status(500);
+          res.send('Error:', err)
+      }else{
+          res.render('books', {books: books});
+      }
+  }).sort( { 'title': 'asc'} );
+}
+
+//////////////////////////////////////////////////////////////////////////////
 //PROJECTS PAGE
 router.get('/project', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/projects.html'))
 }); 
+
+//////////////////////////////////////////////////////////////////////////
 
 //Contact Infors
 router.get('/contact', function (req, res) {
@@ -216,281 +493,13 @@ router.post('/handleForm', (req, res) => {
      var animals = [].concat(req.body.sapian);
    console.log(animals)
      res.render('showAnimals', {name: name, animals:animals});
-    
-    
 
     })
 
 ////////////////////////////////////////////
-
-router.get('/book', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/bookform.html'))
-}); 
-
-//@desc  Craete New Book
-//@route  POST /api/v1/book
-//@access  Public
-
-router.post('/createbook', asyncHandler(async(req, res, next) => {
-
-         const newBook = await Book.create(req.body)
-
-    newBook.save( (err) => {
-        if (err) {
-            res.type('html').status(500);
-            res.send('Sorry ! This is already published:', err);
-        }else{
-             res.render('createdbook', {book: newBook});
-        }
-    });
-
-}))
-
-//GET ALL BOOKS
-router.get('/all', (req, res) => {
-    Book.find((err, book) => {
-        if (err) {
-            res.type('html').status(500)
-            res.send('Error:', err)
-        }else if (book.length == 0) {
-             res.type('html').status(200)
-             res.send('There is no book created right now.')
-        }else{
-             res.render('showAll', {book: book});
-        }
-    });
-});
-
-//BOOK SEARCH
-router.get('/booksearch', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/booksearch.html'))
-}); 
-
-//SEARCH FOR BOOKS
-router.post('/api', (req, res) => {
-
-    var query = {};
-    if (req.query.title)
-   query.title = {$regex: req.query.title};
-    query.title = req.query.title;
-    if (req.query.name)
-    query['authors.name'] = {$regex: req.query.name};
-    query['authors.name'] =  req.query.name;
-    if (req.query.year)
-    query.year = req.query.year;
-
-    if (Object.keys(query).length != 0) {
-        Book.find(query, (err, books) => {
-            if (!err)
-            res.json(books);
-            else {
-                console.log(err)
-                res.json({});
-            }
-        });
-    }else {
-          //res.json({});
-          res.render('books', {books: books});
-    }
-
-})
-
-router.post('/search', (req, res) => {
-    if (req.body.which == 'all') {
-        searchAll(req, res);
-    }else if(req.body.which == 'any') {
-        searchAny(req, res);
-    }else{
-        searchAll(req, res);
-    }
-})
-
-function searchAll(req, res) {
-
-    var query = {};
-
-    if (req.body.title) query.title = req.body.title;
-    if (req.body.year) query.year = req.body.year;
-    if (req.body.name) {
-        query['authors.name'] = req.body.name;
-    }
-    console.log(query)
-
-    Book.find(query, (err, books) => {
-        if (err) {
-            res.type('html').status(500);
-            res.send('Error:', err)
-        }else{
-            res.render('books', {books: books});
-        }
-    })
-}
-
-function searchAny(req, res) {
-
-    var terms = [];
-
-    if (req.body.title) 
-    terms.push({title: { $regex: req.body.title } });
-    if (req.body.year) 
-    terms.push({year: req.body.year});
-    if (req.body.name) 
-        terms.push({'authors.name': req.body.name});
-
-
-    var query = {$or : terms};
-    console.log(query)
-
-    Book.find(query, (err, books) => {
-        if (err) {
-            res.type('html').status(500);
-            res.send('Error:', err)
-        }else{
-            res.render('books', {books: books});
-        }
-    }).sort( { 'title': 'asc'} );
-}
-
-// Loan Calculators
-router.get('/calculate', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/loancalc.html'))
-}); 
-
-// Number Guesser
-router.get('/guess', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/guess.html'))
-}); 
-
-// Hotel Lounge
-router.get('/hotel', function (req, res) {
-      res.sendFile(path.join(__dirname, '/hotel/hotel.html'))
-}); 
-
-router.get('/hotelabout', function (req, res) {
-      res.sendFile(path.join(__dirname, '/hotel/about.html'))
-}); 
-
-router.get('/hotelcontact', async function(req, res) {
-      res.sendFile(path.join(__dirname, '/hotel/contact.html'))
-
-      const hotelcontact = await  Hotelcontact.find();
-
-      res.status(201).json({
-          suceess: true,
-          data: hotelcontact
-      })
-}); 
-
- router.post('/hotelcontact', (asyncHandler(async (req, res, next) => {
-    //const {email} = req.body;
-           //sendmail(email)
-    try{
-       const hotelcontact = await Hotelcontact.create(req.body)
-       
-     //hotelcontact.save(() => {});
-    /*  res.render('hotelform', {data: hotelcontact,
-        success: true}); */
-
-    }catch(err){
-        error.message(err)
-    }
-
-})))
-
-//Frankfurt Ledger
-router.post('/frankfurtcontact', (asyncHandler(async (req, res, next) => {
-    //const {email} = req.body;
-          // sendmail(email)
-    try{
-       const frankfurtcontact = await Frankfurtcontact.create(req.body)
-
-     /* frankfurtcontact.save(() => {
-
-            res.render('frankfurt', {data: frankfurtcontact,
-              success: true});
-         
-    });*/
-
-    }catch(err){
-        error.message(err)
-    }
-
-})))
-
-router.get('/frankfurt', function (req, res) {
-      res.sendFile(path.join(__dirname, '/frankfurt/index.html'))
-}); 
-
-router.get('/frankfurtblog', function (req, res) {
-      res.sendFile(path.join(__dirname, '/frankfurt/blog.html'))
-}); 
-
-router.get('/frankfurtpost1', function (req, res) {
-      res.sendFile(path.join(__dirname, '/frankfurt/post1.html'))
-}); 
-
-router.get('/frankfurtpost2', function (req, res) {
-      res.sendFile(path.join(__dirname, '/frankfurt/post2.html'))
-}); 
-
-//Hambuger Menu
-router.get('/hambuger', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/hambuger.html'))
-}); 
-
-router.get('/frankfurtpost3', function (req, res) {
-      res.sendFile(path.join(__dirname, '/frankfurt/post3.html'))
-}); 
-
-//Knowledger Resume
-router.get('/knowledge', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/knowledge.html'))
-}); 
-
-// Other Satatic Designs
-router.get('/satdesign', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/sdesign.html'))
-}); 
-
-// BackDev
-router.get('/backdev', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/devop.html'))
-}); 
-
-// OOPROG
-router.get('/ooprog', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/oop.html'))
-}); 
-
-//Presentation
-router.get('/presentation', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/presentation.html'))
-}); 
-
-//Drop Down Menu
-router.get('/dropdown', function (req, res) {
-      res.sendFile(path.join(__dirname, '/html/dropdown.html'))
-}); 
-
-// Object-Oriented-Programming 
-//JAVA
-router.get('/java', function (req, res) {
-    res.sendFile(path.join(__dirname, '/obj-ori-pro/java.html'))
-});
-
-//PYTHON
-router.get('/python', function (req, res) {
-    res.sendFile(path.join(__dirname, '/obj-ori-pro/python.html'))  
-});
-
-//NODE
-router.get('/node', function (req, res) {
-    res.sendFile(path.join(__dirname, '/obj-ori-pro/node.html'))    
-});
-
 //404 PAGE
 router.get(/*default*/ (req, res) => {
-    res.render('404')
+    res.render('p4')
 })
     
 module.exports = router;

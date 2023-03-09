@@ -1,0 +1,26 @@
+
+
+.title{
+    margin-left: 70px;
+}
+
+.author{
+    margin-left: -50px;
+}
+
+.year{
+    margin-left: 0px;
+}
+
+.container{
+    text-align: center;
+    background-color: lightgray;
+}
+
+.srch-form{
+    color: black;
+}
+
+.srch-txt{
+    border: 10px;
+}

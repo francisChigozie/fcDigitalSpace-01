@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guesser | <%= title %></title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/guess.css">
+</head>
+
+<body>
+    <div class="container">
+       <div class="row">
+            <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
+                 <h1>Number Guesser</h1>
+                 <div id="game" class="game">
+                     <p>Guess a number between <span class="min-num"></span>
+                        and <span class="max-num"></span> </p>
+                     <input type="number" id="guess-input" placeholder="Enter your guess...">
+                     <input type="submit" value="Submit" id="guess-btn">
+                     <p class="message"></p>
+                 </div>
+             </div>
+      </div>
+  </div>
+   
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cdnjs.minjs"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="../js/guess.js"></script>
+</body>
+
+</html>

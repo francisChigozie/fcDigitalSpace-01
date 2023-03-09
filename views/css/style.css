@@ -1,0 +1,436 @@
+@import url('https://font.googleapis.com/css2?family=open+sans:wght@300;400&display=swap');
+
+:root {
+    --primary-color: #333;
+    --secondary-color: goldenrod;
+    --animate-speed: 2s;
+    --max-width: 920px;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--primary-color);
+    color: #fff;
+    overflow-x: hidden;
+    padding: 0px;
+    line-height: 1.4rem;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    opacity: 0.85;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 5px;
+}
+
+.navbar.top {
+    background: transparent;
+}
+
+.navbar a {
+    color: rgba(236, 228, 228, 0.9);
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 0 ;
+    transition: all 0.2s ease-in;
+}
+
+.navbar a:hover {
+    border-bottom: var(--secondary-color) 2px solid;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content:flex-end;
+}
+
+.navbar ul li {
+ list-style: none;
+}
+
+.logo, .about-img {
+    width: 200px;
+    border-radius: 40%;
+    padding-left: 15px;
+    margin: 0 auto 30px;
+    margin-top: 1rem;
+}
+
+.page{
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4rem;
+    flex-direction: column;
+}
+
+.main-circle .project {
+  border: 1px solid ivory;
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+           border-radius: 100px;
+            align-items: center;
+}
+
+h3, h4 {
+    border: none;
+    margin-top: 1rem;
+    transition: all 0.3s ease-in;
+}
+
+#btn {
+    text-align: center;
+}
+
+.btn {
+    color: #fff;
+    transition: all 0.3s ease-in;
+}
+    h3:hover, h4:hover, .btn:hover{
+            color: goldenrod;
+        }
+
+ .main-circle .project a {
+    color:rgba(219, 168, 40, 0.418);
+     text-decoration: none;
+    }
+
+    /* About */
+
+    #about, .about{
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #about .about a {
+        color: white;
+        background: goldenrod;
+        text-decoration: none;
+        padding: 15px;
+        border: 1px solid gray;
+        border-radius: 20px;
+        opacity: 0.8;
+        transition: all 0.3s ease-in;
+    }
+     
+    #about .about a:hover {
+        color: goldenrod;
+        background-color: gray;
+    }
+
+    #about .about p {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     margin: 0 auto;
+     text-align: center;
+     height: 50%; 
+     padding:  30px 30px;
+     overflow: hidden;
+    } 
+
+    /* Resume */
+    #resume .container-resume {
+      margin: 0 auto;
+     text-align: center;
+     height: 50%; 
+     padding:  30px 30px;
+     overflow: hidden;
+     text-align: center;
+    }
+
+    #resume .resume-img {
+        height:100%;
+        width: 800px;
+    }
+
+    #resume .resume-main {
+        background-color: whitesmoke;
+    }
+
+   #resume a {
+    color: #fff;
+    border: 1px solid gray;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in;
+}
+
+ #resume a:hover {
+     color: goldenrod;
+     background-color: #fff;
+}
+
+/* Contact Form */
+.form {
+    padding: 30px 40px;
+}
+
+#contact-form {
+max-width: 920px;
+margin-left: 170px;
+
+}
+
+#contact-form .form-group {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+
+}
+
+#contact-form label {
+    display:inline-block;
+    margin-bottom: 5px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 14px;
+    display: block;
+}
+
+.form-group.success input {
+    border-color: #2ecc71;
+}
+
+.form-group.error input {
+    border-color: #e74c3c;
+}
+
+
+.form-group.success i.fa-check-circle {
+    visibility: visible;
+    color: #2ecc71;
+}
+
+.form-group.error i.fa-exclamation-circle {
+    visibility: visible;
+    color: #e74c3c;
+}
+
+.form-group i {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.form-group small {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.form-group.error small {
+    visibility: visible;
+    color: #e74c3c;
+}
+
+#contact-form textarea {
+    height: 200px;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: #f7c08a;
+}
+
+ #contact-form button {
+        color:black;
+        text-decoration: none;
+        padding: 15px;
+        border: 1px solid #333;
+        border-radius: 10px;
+        opacity: 0.8;
+        transition: all 0.3s ease-in;
+    }
+     
+    #contact-form button:hover {
+        color: #fff;
+        cursor: pointer;
+        background-color:goldenrod;
+    }
+
+/* Contact Form Feedback */
+#feedback-form {
+max-width: 920px;
+margin-left: 170px;
+}
+
+#feedback .feedback p {
+     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     font-size: medium;
+     margin: 0 auto;
+     text-align: center;
+     height: 50%; 
+     padding:  30px 30px;
+     overflow: hidden;
+}
+
+#feedback .feedback a {
+       color: white;
+        background: goldenrod;
+        text-decoration: none;
+        padding: 15px;
+        border: 1px solid gray;
+        border-radius: 20px;
+        opacity: 0.8;
+        transition: all 0.3s ease-in;
+}
+
+#feedback-form .feedback a:hover {
+     color: goldenrod;
+        background-color: gray;
+}
+
+#feedback-form .feedback-image {
+    background: url('../image/frank.jpg') no-repeat center center/cover;
+    width: 200px;
+    border-radius: 40%;
+    padding-left: 15px;
+    margin: 0 auto 30px;
+    margin-top: 1rem;
+}
+
+/* contact-form success mssage */
+#contact-form .result {
+text-align: center;
+font-family: inherit;
+color: lightgreen;
+}
+
+        /* Footer */
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+}
+
+.footer a {
+    color: #fff;
+    transition: all 0.3s ease-in;
+}
+
+.footer a:hover {
+     color: goldenrod;
+}
+
+.footer .social > * {
+    margin-right: 30px;
+}
+
+
+/* Mobile */
+@media(max-width: 920px) {
+
+    #page-1 .page,
+    #page-2 .page {
+        float: none;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+     #resume .resume-img {
+                width: 100%;
+            }
+
+}
+
+@media(max-width: 600px) {
+
+                #page-1 .page,
+                #page-2 .page {
+                float: none;
+                left: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            img {
+                float: none;
+                text-align: center;
+            }
+
+            .navbar ul, .navbar ul li {
+                float: none;
+            }
+
+            .navbar ul li a {
+                color: #fff;
+                background-color: #333;
+                border-radius: 5px;
+            }
+
+            #about  {
+                
+                text-align: center;
+                margin: auto;
+            }
+
+            #resume .container-resume {
+                float: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            #resume .resume-main {
+                width: 100%;
+            }
+
+            #resume .resume-img {
+                width: 100%;
+            }
+
+            #contact-form {
+                float: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                max-width: 500px;
+                margin-left: 0px;
+            }
+
+            #feedback-form {
+            max-width: 600px;
+            margin-left: 60px;
+            }
+
+    }  

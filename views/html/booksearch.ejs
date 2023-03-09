@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search | <%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+     <link rel="stylesheet" href="../css/booksearch.css"> 
+    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+     
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded"><br>
+                <h1 class="srch-form">Search For A Book</h1>
+                <form action="./search" method="POST" class="animal-form"><br>
+
+                    <label class="srch-form" for="title">Title :</label> <input name="title"
+                    required>
+                    <p><br>
+                
+                        <label for="author" class="srch-form">Author name :</label> <input name="name"
+                        required>
+                    </p><br>
+                
+                    <label for="year" class="srch-form"> Year :</label> <input name="year"
+                    required>
+                    <p><br>
+                
+                        <input type="radio" name="which" value="all" checked>All
+                        <br><br>
+                        <input type="radio" name="which" value="any">Any
+                    </p><br><br>
+                
+                    <input type="submit" value="Search" class="srch-form btn">
+                
+                </form>
+                <br><br><br>
+                <a href="/backdev" class="srch-form btn">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html> 
