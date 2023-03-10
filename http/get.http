@@ -1,2 +1,2 @@
-GET http://localhost:4001/infocontact
+GET http://localhost:3003/infocontact
 Content-Type: application/json

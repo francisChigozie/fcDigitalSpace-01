@@ -322,22 +322,36 @@ router.get('/contact', function (req, res) {
 //@route  POST /api/v1/contact
 //@access  Public
 
-router.post('/contact', asyncHandler(async(req, res, next) => {
-         //const {email} = req.body;
+router.post('/infocontact', asyncHandler(async(req, res, next) => {
+         //const {email} = req.body.email;
+          // console.log(email)
          //sendmail(email)
 
-          const newContact = await Contact.create( req.body)
+         const contactInfo = {
+            user: req.body.userValue,
+            subject: req.body.subjectValue,
+            email: req.body.emailValue,
+            phone: req.body.phoneValue,
+            text: req.body.textValue,
+        }
+       console.log(contactInfo)
 
-          /* newContact.save( (err) => {
-            if (err) {
-                res.type('html').status(500);
-               // res.render('errors', err)
-               res.send('Error:', err);
-            }else{
-                res.render('created', {contact: newContact});
-            }
-        }); */
-}))
+          const newContact = await Contact.create( contactInfo)
+
+          const result = await newContact.save()// Make sure to wrap this code in an async function
+
+           res.render('created', {contact: result});
+
+          console.log(result)
+
+
+    }));
+
+    // Redirect created.ejs
+/* router.get('/feedback', function (req, res) {
+    res.render("created", {title:'Feedback'});
+});  */
+
 
 //@desc  Get A Single  User Contact
 //@route  GET /api/v1/contacts/:id

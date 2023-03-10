@@ -5,7 +5,8 @@ const connectToDatabase = require('./models/index');
 const path = require('path')
 const colors = require('colors')
 const router = require("./routes/routes")
-const cors = require('cors')
+//const cors = require('cors')
+const session = require('express-session')
 const morgan = require('morgan')
 const mongoSaitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
@@ -24,18 +25,25 @@ const app = express()
 
 app.use(express.json())
 
-//Dev logging middleware
-//if(process.env === 'production'){
-    // app.use(morgan('dev'));
-//}
+app.use(
+    session({
+        secret:'my secret key',
+        saveUninitialized: true,
+        resave: true
+    }))
+
+app.use((req, res, next) => {
+    res.locals.message = req.session.message;
+    delete req.session.message;
+    next();
+})    
+
 //app.set('views', path.join(__dirname,'views'))
 app.set('view engine', 'ejs');
 app.use( express.static( "views" ) );
 //app.set('views','routes')
 
-/* app.use(cors({
-    origin: "https://fcwebapp01.herokuapp.com/" //or your netlify domain 
-}))*/
+
 
 app.use(express.urlencoded({extended: true}))
 app.use(bodyParser.urlencoded({extended: true}))

@@ -1,10 +1,10 @@
-POST http://localhost:4001/contact
+POST http://localhost:3003/infocontact
 Content-Type: application/json
 
 {
-    "name":"Katty",
+    "name":"Angel Guide",
     "subject":"Welcome address",
-    "email":"katt@yahoo.com",
-    "phone":"+4912345566",
-    "text":"How are you today"
+    "email":"lur129@gmail.com",
+    "phone":"+49 123 45566",
+    "text":"Working at alst"
 }

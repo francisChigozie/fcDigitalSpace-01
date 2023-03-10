@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/nav.ejs') %>
+
+<!-- <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Contact</title>
+
+</head> -->
+
+<body>
+    <header id="header" class="navbar top">
+
+        <%- include('./partials/nav.ejs') %>
+
+    </header><br>
+    <section id="feedback-form">
+        <div><br><br>
+
+            <div class="feedback-image"></div>
+
+            <h1><span class="text-primary">Contact
+                </span>Feedback</h1><br>
+            <h3>Successfully received your contact details:</h3><br>
+            <p>
+                <b>H! </b>
+
+                    <%= contact.name %>,
+
+                    <br>
+                    <p>Your email address is : </p>
+
+                    <%= contact.email %>
+
+                        <br>
+                        <p>We will get in contact with  you as soon we review your appliction.
+                        </p><br><br>
+                        <a href="https://github.com/francisChigozie" style="color: wheat;
+                        text-decoration: none; padding: 10px;align-items: center;">
+                            <strong>Visit My Github</strong></a>
+            </p>
+            
+            <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

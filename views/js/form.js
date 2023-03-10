@@ -127,73 +127,12 @@ async function sendFormData(){
                      var successMsg = document.getElementById('result').innerHTML = 
                         'Your message is sent and I will write you soon';
 
-                    setInterval(() => {
-                        window.location = '/contact';
-                    }, 20000)
-                    })
+                         setInterval(() => {
+                            window.location = '/contact';
+                        }, 10000)
+                    }) 
                     .catch((err) => {
                         console.error(err.message)
                     })
      
 }
-
-/**
- *function getFormData() {
- 
-     // get the values from the inputs
-    const userValue = user.value.trim();
-    const subjectValue = subject.value.trim();
-    const emailValue = email.value.trim();
-    const phoneValue = phone.value.trim();
-    const textValue = text.value.trim();
-
-         try{
-          axios.post("/contact", {
-                    user: userValue,
-                    subject: subjectValue,
-                    email: emailValue,
-                    phone: phoneValue,
-                    text: textValue
-              }
-          )
-          .then((res) => {
-              console.log(res)
-          })
-          .then((data) => {
-              console.log(data)
-          })
-         }
-          catch(err) {
-             console.error(err.message)
-         }
-}
- * 
-function sendForm() {
-    var formData = new formData(form);
-
-  fetch("/contact", {
-      method:"POST",
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          user: formData.get('name'),
-          subject: formData.get('subject'),
-          email: formData.get('email'),
-          phone: formData.get('phone'),
-          text: formData.get('text'),
-      })
-      .then((res) => {
-          res.json()
-      }) 
-      .then((data) => {
-          console.log(data)
-      })
-      .catch((err) => {
-          console.error(err)
-      })
-  })
-
-}
-          
- */
