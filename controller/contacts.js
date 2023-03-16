@@ -3,8 +3,8 @@ const asyncHandler = require('../middleware/async')
 const Contact = require('../models/Contact')
 //const sendmail = require('./sendmail.js')
 
-//@desc  Craete A Book
-//@route  POST /api/v1/books
+//@desc  Craete A Contact
+//@route  POST /api/v1/contacts
 //@access  Public
 
 exports.createContact = asyncHandler(async (req, res, next) => {

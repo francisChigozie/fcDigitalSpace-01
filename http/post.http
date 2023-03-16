@@ -1,10 +1,9 @@
-POST http://localhost:3003/infocontact
+POST http://localhost:3003/books
 Content-Type: application/json
 
 {
-    "name":"Angel Guide",
-    "subject":"Welcome address",
-    "email":"lur129@gmail.com",
-    "phone":"+49 123 45566",
-    "text":"Working at alst"
+    "title":"John34 Biography",
+    "year":"2023",
+    "name":"ibs",
+    "affiliation": "tit"
 }

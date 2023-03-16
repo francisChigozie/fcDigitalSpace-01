@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Book Created in DB</title>
+
+</head>
+
+<body>
+    <header id="header" class="navbar top">
+
+        <nav>
+            <div>
+                <ul>
+                    <li><a href="./">Home</a></li>
+                    <li><a href="./about">About</a></li>
+
+                    <li><a href="./resume">Resume</a></li>
+                    <li><a href="https://github.com/francisChigozie" target="_blank">Blog</a></li>
+                    <li><a class="current" href="./contact">Contact</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </header><br>
+    <section id="feedback-form">
+        <div><br><br>
+
+            <div class="feedback-image"></div>
+
+            <h1><span class="text-primary">Book
+                </span>Feedback</h1><br>
+            <h3>H! You have Successfully created new book:</h3><br>
+        <p>
+            <div class="blogs content">
+                <h2 class="center-headings">New Book Published</h2>
+
+                 <% if (book.length > 0) { %>
+
+                    
+                     <% book.forEach(book => { %>
+                    <!-- <a class="single" href="/books/<%= book._id %>">  </a>-->
+                    <h3>Name : <%= book.title %></h3>
+                    <p>Year : <%= book.year %></p>
+                   
+                      <% }) %> 
+                      <% } else { %> 
+                        <p class="center-headings">There is no books to display!</p>       
+                <% }  %> 
+            
+                </div>
+            <br><br>
+            <a href="/bookform" id="feedback" style="color: wheat;
+                        text-decoration: none; padding: 10px; align-items: center;">Create New Book</a>
+            <br><br>
+            <a href="/backdev" id="feedback" style="color: wheat;
+                                    text-decoration: none; padding: 10px; align-items: center;">Back To Form</a>
+            <br><br>
+            <a href="https://github.com/francisChigozie" style="color: wheat;
+                        text-decoration: none; padding: 10px;align-items: center;">
+                <strong>Visit My Github</strong></a>
+        </p>
+
+</body>
+<footer class="footer bg-dark">
+    <div class="social">
+        <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/chigozie-francis-815181110">
+            <i class="fab fa-linkedin fa-2x"></i></a>
+    </div><br><br>
+    <p>Copyright &copy; 2021 - Chigozie Francis</p>
+</footer>
+<script src="./js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

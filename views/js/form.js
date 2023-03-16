@@ -123,6 +123,8 @@ async function sendFormData(){
                     })
                     .then((data) => {
                         console.log(data)
+
+                       // window.location = '/feedback';
                          
                      var successMsg = document.getElementById('result').innerHTML = 
                         'Your message is sent and I will write you soon';

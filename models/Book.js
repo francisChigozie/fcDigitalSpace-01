@@ -21,7 +21,11 @@ var bookSchema = new Schema({
         type: Number,
         required: [true, 'Please add year']
     },
-    authors: [authorSchema]
+    authors: [authorSchema],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('Book', bookSchema);

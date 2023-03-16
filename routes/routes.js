@@ -3,9 +3,9 @@ var router = express.Router()
 const path = require('path')
 //const sendmail = require('./sendmail.js.js.js')
 const Contact = require('../models/Contact')
+const Book = require('../models/Book')
 const Hotelcontact = require('../models/HotelContact')
 const Frankfurtcontact = require('../models/FrankfurtContact')
-const Book = require('../models/Book');
 const ErrorResponse = require('../utils/errorResponse')
 const asyncHandler = require('../middleware/async')
 const advancedResults = require('../middleware/advancedResult')
@@ -16,12 +16,12 @@ router.get("/", (req, res) => {
 }) 
 
 // About Page
-router.get('/about', function (req, res) {
+router.get('/about', (req, res) => {
     res.render("about", {title:'About'});
 }); 
 
 //Resume
-router.get('/resume', function (req, res) {
+router.get('/resume', (req, res) => {
     res.render("resume", {title:'Resume'});
 }); 
 
@@ -31,44 +31,37 @@ router.get("/blog", (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 // Hotel Lounge
-router.get('/hotel', function (req, res) {
+router.get('/hotelHomePage', (req, res) => {
     res.render("./hotel/hotel", {title:'Welcome'});
 }); 
 
-router.get('/hotelabout', function (req, res) {
+router.get('/hotelAbout', function (req, res) {
     res.render("./hotel/about", {title:'About'});
 }); 
 
-router.get('/hotelcontact', async function(req, res) {
+router.get('/hotelContact', async function(req, res) {
     res.render("./hotel/contact", {title:'Contact'});
-
-    const hotelcontact = await  Hotelcontact.find();
-
-    res.status(201).json({
-        suceess: true,
-        data: hotelcontact
-    })
 }); 
 
 router.post('/hotelcontact', (asyncHandler(async (req, res, next) => {
-  //const {email} = req.body;
-         //sendmail(email)
-  try{
-     const hotelcontact = await Hotelcontact.create(req.body)
-     
-   //hotelcontact.save(() => {});
-  /*  res.render('hotelform', {data: hotelcontact,
-      success: true}); */
+    //const {email} = req.body;
+           //sendmail(email)
+    try{
+       const hotelcontact = await Hotelcontact.create(req.body)
+       
+     //hotelcontact.save(() => {});
+        res.render('hotelform', {data: hotelcontact,
+        success: true})
 
-  }catch(err){
-      error.message(err)
-  }
+    }catch(err){
+        error.message(err)
+    }
 
 })))
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Frankfurt
-router.get('/frankfurt', function (req, res) {
+router.get('/frankfurt', (req, res) => {
     res.render("./frankfurt/frankfurt", {title:'Home'});
 }); 
 
@@ -92,20 +85,12 @@ router.get('/frankfurtpost3', function (req, res) {
 router.post('/frankfurtcontact', (asyncHandler(async (req, res, next) => {
     //const {email} = req.body;
           // sendmail(email)
-    try{
+    
        const frankfurtcontact = await Frankfurtcontact.create(req.body)
-
-     /* frankfurtcontact.save(() => {
-
-            res.render('frankfurt', {data: frankfurtcontact,
-              success: true});
-         
-    });*/
-
-    }catch(err){
-        error.message(err)
-    }
-
+            
+                res.render('frankfurt', {data: frankfurtcontact,
+                    success: true})
+        
 })))
 
 
@@ -181,25 +166,6 @@ router.get('/bookform', function (req, res) {
     res.render("./html/bookform", {title:'Home'});
 }); 
 
-//@desc  Craete New Book
-//@route  POST /api/v1/book
-//@access  Public
-
-router.post('/createbook', asyncHandler(async(req, res, next) => {
-
-       const newBook = await Book.create(req.body)
-
-  newBook.save( (err) => {
-      if (err) {
-          res.type('html').status(500);
-          res.send('Sorry ! This is already published:', err);
-      }else{
-           res.render('createdbook', {book: newBook});
-      }
-  });
-
-}))
-
 //GET ALL BOOKS
 router.get('/all', (req, res) => {
   Book.find((err, book) => {
@@ -221,7 +187,7 @@ router.get('/booksearch', function (req, res) {
 }); 
 
 //SEARCH FOR BOOKS
-router.post('/api', (req, res) => {
+router.post('/publishbook', async(req, res) => {
 
   var query = {};
   if (req.query.title)
@@ -234,19 +200,33 @@ router.post('/api', (req, res) => {
   query.year = req.query.year;
 
   if (Object.keys(query).length != 0) {
-      Book.find(query, (err, books) => {
-          if (!err)
-          res.json(books);
-          else {
-              console.log(err)
-              res.json({});
-          }
-      });
-  }else {
-        //res.json({});
-        res.render('books', {books: books});
-  }
 
+    const book = await new Book(req.body)
+    //const blog = await Blog.create(req.body)
+
+    book.save()
+    .then((result) => {
+       res.redirect('/publishbook')
+       //res.render('createdbook', {books: books});
+        console.log(book)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+    }
+
+})
+
+router.get('/publishbook', async(req, res) => {
+
+            await Book.find().sort({ createdAt: -1 })
+            .then((result) => {
+                res.render('createdbook', { title: 'Feedback', book: result  })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
 })
 
 router.post('/search', (req, res) => {
@@ -259,7 +239,7 @@ router.post('/search', (req, res) => {
   }
 })
 
-function searchAll(req, res) {
+async function searchAll(req, res) {
 
   var query = {};
 
@@ -270,17 +250,18 @@ function searchAll(req, res) {
   }
   console.log(query)
 
-  Book.find(query, (err, books) => {
-      if (err) {
-          res.type('html').status(500);
-          res.send('Error:', err)
-      }else{
-          res.render('books', {books: books});
-      }
-  })
+    //const book = Book.find(query)
+    await Book.find().sort({ 'title': 'asc' })
+            .then((query) => {
+                res.render('booksrch', { title: 'Feedback', book: query  })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
 }
 
-function searchAny(req, res) {
+async function searchAny(req, res) {
 
   var terms = [];
 
@@ -295,14 +276,14 @@ function searchAny(req, res) {
   var query = {$or : terms};
   console.log(query)
 
-  Book.find(query, (err, books) => {
-      if (err) {
-          res.type('html').status(500);
-          res.send('Error:', err)
-      }else{
-          res.render('books', {books: books});
-      }
-  }).sort( { 'title': 'asc'} );
+  //Book.find(query, (books)).sort( { 'title': 'asc'} );
+     await Book.find().sort({ 'title': 'asc' })
+            .then((result) => {
+                res.render('booksrch', { title: 'Feedback', book: result  })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -327,30 +308,36 @@ router.post('/infocontact', asyncHandler(async(req, res, next) => {
           // console.log(email)
          //sendmail(email)
 
-         const contactInfo = {
+          const contactInfo = {
             user: req.body.userValue,
             subject: req.body.subjectValue,
             email: req.body.emailValue,
             phone: req.body.phoneValue,
             text: req.body.textValue,
-        }
+        } 
        console.log(contactInfo)
 
           const newContact = await Contact.create( contactInfo)
 
           const result = await newContact.save()// Make sure to wrap this code in an async function
-
-           res.render('created', {contact: result});
+                 .then((result) => {
+                    res.render('created', {contact: result});
+                    //res.redirect('/feedback')
+                 })
+                 .catch((err) => {
+                    console.log(err)
+                 })
+           //res.render('created', {contact: result});
 
           console.log(result)
-
+        
 
     }));
 
     // Redirect created.ejs
-/* router.get('/feedback', function (req, res) {
+ router.get('/feedback', function (req, res) {
     res.render("created", {title:'Feedback'});
-});  */
+});  
 
 
 //@desc  Get A Single  User Contact
@@ -459,7 +446,7 @@ router.delete('/infocontact/:id', asyncHandler(async(req, res, next) => {
         404
          )}
 
-         await contact.remove
+         await contact.findByIdAndDelete()
 
     res.status(200).json({
         success: true,
@@ -467,19 +454,6 @@ router.delete('/infocontact/:id', asyncHandler(async(req, res, next) => {
     })
 }))
 ///////////////////////////////////////////////////////////////////////////
-/*
-router.post('/contact',async (req, res) => {
-        const {email} = req.body;
-         sendmail(email)
- try{ 
-      await Contact.create(req.body);
-      res.send('New contact is inserted');
-    } 
-      catch (err) { console.error(err.message) }
-})
-*/
- 
-
 //Deutsch
 router.get('/deutsch', function (req, res) {
         const name = req.body;
@@ -510,10 +484,10 @@ router.post('/handleForm', (req, res) => {
 
     })
 
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 //404 PAGE
 router.get(/*default*/ (req, res) => {
-    res.render('p4')
+    res.status(404).render('404',{title: '404'})
 })
     
 module.exports = router;

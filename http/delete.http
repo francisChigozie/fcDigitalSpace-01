@@ -1,3 +1,3 @@
-DELETE     http://localhost:4001/infocontact/6225a9a3b0e757ec34c556af
+DELETE     http://localhost:3003/blogs/641046228b529ac4274c0840
 Content-Type: application/json
 

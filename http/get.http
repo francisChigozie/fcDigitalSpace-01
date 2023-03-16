@@ -1,2 +1,2 @@
-GET http://localhost:3003/infocontact
+GET http://localhost:3003/blogs
 Content-Type: application/json

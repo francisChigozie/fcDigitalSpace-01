@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="welcome to the most extraordinary hotel in Heilbronn Bäden-württenberg">
+    <meta name="keywordy" content="hotel,heilbronn,baden-württenberg">
+    <script src="https://kit.fontawesome.com/d5be46b1b4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/hotel.css">
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="../css/mobile.css">
+    <title>Hotel Lounge </title>
+
+</head>
+
+<body>
+    <header>
+
+       <nav id="navbar">
+            <div class="container">
+                <%- include('./hotel/hotelnav.ejs') %>
+            </div>
+        </nav>
+
+    </header>
+
+    <section id="contact-form" class="py-3">
+        <div class="container">
+            <h3 class="l-heading">Thank you,<span class="text-primary">
+            message </span>is sent successfully</h3>
+            
+            <div id="display"></div>
+            <div class="back-image">
+    
+            </div>
+        </div>
+    </section>
+
+    <!--  Main Footer -->
+
+    <section id="contact-info" class="bg-dark">
+        <div class="container">
+            <div class="box btn">
+                <i class="fas fa-hotel fa-3x"></i>
+                <h3>Location</h3>
+                <p>Haupt Straße 50, Stuttgart Baden-württenberg</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-phone fa-3x"></i>
+                <h3>Phone Number</h3>
+                <p>(+49) 0724 3455678</p>
+            </div>
+            <div class="box btn">
+                <i class="fas fa-envelope fa-3x"></i>
+                <h3>Email Address</h3>
+                <p>frontdest@hotelbt.com</p>
+            </div>
+        </div>
+    </section>
+    <footer id="main-footer">
+        <p>Hotel Lounge &copy; 2021, All Rights Reserved</p>
+    </footer>
+</body>
+
+</html>

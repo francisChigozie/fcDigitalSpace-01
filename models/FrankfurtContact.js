@@ -16,7 +16,7 @@ var frankfurtSchema = new Schema({
         ]
     },
     phone: {
-        type: Number,
+        type: String,
     required: [true, 'Please enter your phone number']
     },
     created_at: {

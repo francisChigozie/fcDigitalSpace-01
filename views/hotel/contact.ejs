@@ -11,7 +11,7 @@
             <h1 class="l-heading"><span class="text-primary">Contact  
             </span>Us</h1>
             <p>Please fill out the form below to contact us</p>
-            <form  id="form">      <!-- action="/hotelcontact" method="post"-->
+            <form  id="form" action="/hotelcontact" method="post">      <!-- "-->
                 <h3 id="result"></h3>
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -27,35 +27,8 @@
                     <label for="message">Message</label>
                     <textarea name="message" id="message" required></textarea>
                 </div>
-                <button type="submit" class="btn" onclick="sendWithJSONinstead()">Submit</button>
+                <button type="submit" class="btn">Submit</button>
             </form>
-            
-             
-            <script>
-             async   function sendWithJSONinstead() {
-
-                    //var form = document.querySelector('form');
-                    var name = document.querySelector('#name')
-                    var email = document.querySelector('#email')
-                    var message = document.querySelector('#message')
-                    //var data = new FormData(form);
-
-                    const data = { name,email,message }
-                    const options = {
-                    method: 'POST',
-                    Headers: {
-                        'Content-Type':'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-                     const res = await fetch('/hotelcontact', options)
-                     .then(res => {
-                                const json = res.json();
-                                console.log(json);
-                    document.querySelector('#result').innerHTML = "form submitted with javascript and JSON"     
-                                });
-                }
-            </script>
         </div>
     </section>
 <section id="contact-info" class="bg-dark">
